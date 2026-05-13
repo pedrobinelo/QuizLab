@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/book_pile.png" />
+
+    <title>Fim do quiz</title>
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link href="./css/toast.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/quiz_end.css" />
+  </head>
+
+  <body>
+    <div id="background-blur"></div>
+
+    <div id="page-content" style="display: none">
+      <div id="quizCover">
+        <h1 id="score"></h1>
+        <div id="end-quiz">
+          <button
+            id="end-quiz-button"
+            class="btn btn-lg btn-success"
+            type="button"
+            onclick="endQuiz()"
+          >
+            Finalizar Quiz
+          </button>
+          <button
+            id="restart-quiz-button"
+            class="btn btn-lg btn-warning"
+            type="button"
+            onclick="restartQuiz()"
+          >
+            Reiniciar Quiz
+          </button>
+        </div>
+      </div>
+      <div id="msgOrSpinner" class="spinner"></div>
+    </div>
+    <!-- O container onde as notificações serão inseridas via JavaScript -->
+    <div id="toast-container"></div>
+    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="./js/modules/global.js"></script>
+    <script src="./js/modules/toast.js"></script>
+    <script src="./js/pages/quiz_end.js"></script>
+    <script src="./js/firebase/firebase-init.js"></script>
+  </body>
+</html>

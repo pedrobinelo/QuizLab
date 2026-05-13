@@ -1,0 +1,187 @@
+/* HEADER */
+
+#menu-div,
+header,
+nav,
+main,
+#mediaContainer > div,
+#optionsDiv,
+#buttons-div,
+#page-content {
+  display: flex;
+}
+
+#menu-div,
+#mediaContainer > div,
+header {
+  width: 100%;
+}
+
+#mediaContainer > div {
+  justify-content: space-between;
+}
+
+#menu-div,
+#buttons-div {
+  justify-content: center;
+}
+
+#menu-div,
+#mediaContainer > div,
+#buttons-div {
+  align-items: center;
+}
+
+header {
+  justify-content: flex-start;
+}
+
+#quizTitleDisplay {
+  word-break: break-word;
+  white-space: pre-line;
+}
+
+#returnToDashboardBtn {
+  color: white;
+}
+
+#returnToDashboardBtn:hover {
+  cursor: pointer;
+}
+
+main,
+#optionsDiv,
+header {
+  flex-direction: column;
+}
+
+main,
+form > div:first-child {
+  text-align: center;
+}
+
+form > div:not(:first-child),
+#optionsDiv {
+  text-align: left;
+}
+
+#buttons-div > button {
+  flex: 1 1 130px; /* Cresce igualmente, mas não fica menor que 130px */
+  min-width: 130px;
+  max-width: 150px;
+  box-sizing: border-box;
+  align-self: center;
+}
+
+form {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Estilo para input de mídia de apoio */
+.custom-file-input ~ .custom-file-label,
+.answer-option {
+  border: 1.5px solid #bdbdbd;
+}
+
+.custom-file-input ~ .custom-file-label,
+.radio-emoji {
+  cursor: pointer;
+}
+
+.custom-file-input ~ .custom-file-label {
+  background: #fff;
+  color: #333;
+  padding: 0.5rem 1rem;
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-file-input {
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  position: absolute;
+}
+
+/* Opções de resposta */
+.answer-option {
+  padding: 5px;
+}
+
+#buttons-div {
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.radio-emoji {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+#difficultyLevel {
+  margin-bottom: 10px;
+}
+
+#difficultyLevel > label {
+  margin: 0;
+}
+
+#difficultyOptionsDiv > label {
+  margin: 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#difficultyOptionsDiv {
+  gap: 6px;
+  align-items: center;
+}
+
+.difficultyLevelOption {
+  accent-color: #09c; /* cor do círculo (moderno, funciona em Chrome, Edge, Firefox) */
+  width: 18px;
+  height: 18px;
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav {
+    width: 40%;
+  }
+
+  form {
+    width: 80%;
+  }
+
+  main {
+    margin: auto 0;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1024px) {
+  h3 {
+    margin-bottom: 0;
+  }
+
+  header {
+    width: 70%;
+  }
+
+  form {
+    width: 100%;
+    max-width: 60%;
+    margin: 0 auto;
+  }
+}

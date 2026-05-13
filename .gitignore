@@ -1,0 +1,9 @@
+# Extensões e Pastas do VS Code
+.vscode/
+
+# Dependências 
+node_modules/
+
+# Logs e arquivos temporários
+*.log
+npm-debug.log*

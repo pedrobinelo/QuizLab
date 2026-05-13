@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/icons/book_pile.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/book_pile.png" />
+
+    <title></title>
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link href="./css/toast.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/quiz.css" />
+  </head>
+
+  <body
+    style="
+      background: #020024;
+      background: linear-gradient(
+        2deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+      );
+    "
+  >
+    <div id="page-content" style="display: none">
+      <header id="quiz-header">
+        <div class="d-flex align-items-center">
+          <span id="question-number"></span>
+        </div>
+        <div class="d-flex align-items-center">
+          <span id="question-level"></span>
+        </div>
+        <button
+          id="end-quiz-btn"
+          class="btn btn-danger"
+          onclick="endOnGoingQuiz()"
+        >
+          Encerrar
+        </button>
+      </header>
+      <main>
+        <div id="quiz-container">
+          <p id="question">
+            <!-- A pergunta será inserida aqui dinamicamente -->
+          </p>
+          <div id="question-media">
+            <!-- Imagem ou vídeo será gerada dinamicamente -->
+          </div>
+          <ul id="options">
+            <!-- As opções de resposta serão inseridas aqui dinamicamente -->
+          </ul>
+          <button
+            id="next-button"
+            class="btn btn-success"
+            disabled="true"
+            onclick="loadNextQuestion()"
+          >
+            Próxima
+          </button>
+        </div>
+      </main>
+    </div>
+    <!-- O container onde as notificações serão inseridas via JavaScript -->
+    <div id="toast-container"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="./js/modules/global.js"></script>
+    <script src="./js/modules/toast.js"></script>
+    <script src="./js/firebase/firebase-init.js"></script>
+    <script src="./js/pages/getQuiz.js"></script>
+    <script src="./js/pages/renderQuiz.js"></script>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+/* Mobile First */
+
+body {
+  color: black;
+  gap: 16px;
+  flex-direction: column;
+}
+
+#pageContainer {
+  padding: 1rem 0;
+  gap: 10px;
+} 
+
+#container {
+  margin-top: 40px;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+
+#signUpContainer {
+  flex-direction: row;
+}
+
+body,
+#signUpContainer,
+main,
+form,
+#jaTemUmaConta,
+body > div,
+#bottomDiv,
+#mainDiv {
+  display: flex;
+}
+
+main,
+form,
+body > div,
+#bottomDiv,
+#mainDiv {
+  flex-direction: column;
+}
+
+body,
+#signUpContainer,
+main,
+body > div,
+form {
+  align-items: center;
+}
+
+body,
+#signUpContainer,
+#jaTemUmaConta,
+body > div {
+  justify-content: center;
+}
+
+main,
+form {
+  gap: 10px;
+}
+
+/* Faça o seu cadastro! */
+h4 {
+  padding: 0 1rem;
+  font-size: 1.25rem;
+}
+
+#mainDiv,
+main,
+body > div {
+  width: 100%;
+}
+
+form {
+  width: 100%;
+}
+
+.signup-info {
+  text-align: center;
+  padding: 0 1rem;
+}
+
+#signup-options {
+  gap: 10px;
+}
+
+form > div {
+  width: 80%;
+}
+
+#bottomDiv {
+  padding: 0 16px;
+  margin-top: 5px;
+  width: 100%;
+  gap: 5px;
+}
+
+#criarContaBtnDiv {
+  text-align: center;
+}
+
+#jaTemUmaConta {
+  flex-direction: row;
+  gap: 6px;
+}
+
+#jaTemUmaConta > a {
+  color: blue;
+}
+
+#mandatoryFields {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.help-text {
+  background-color: red;
+  color: white;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #container {
+    gap: 20px;
+  }
+
+  #signUpContainer {
+    width: 50%;
+    flex-direction: row;
+  }
+
+  /* Faça o seu cadastro! */
+  h4 {
+    font-size: 1.75rem;
+  }
+
+  body > div {
+    gap: 20px;
+  }
+
+  form {
+    font-size: 1.15rem;
+    align-items: center;
+  }
+
+  /* Apenas as divs que estão diretamente dentro do form (e não as aninhadas) serão afetadas. */
+  form > div {
+    width: 60%;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1024px) {
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  #signUpContainer,
+  #mainDiv {
+    /* padding: 1.25rem 0; */
+    flex-direction: row;
+  }
+
+  #mainDiv {
+    align-items: center;
+  }
+
+  #mainDiv > main {
+    flex: 0 0 60%;
+    align-items: flex-end;
+  }
+
+  #mainDiv > #bottomDiv {
+    flex: 0 0 40%;
+  }
+
+  #bottomDiv {
+    padding: 0;
+    margin-top: 0;
+  }
+
+  form {
+    width: 100%;
+    align-items: flex-end;
+    font-size: 1.25rem;
+  }
+
+  /* Apenas as divs que estão diretamente dentro do form (e não as aninhadas) serão afetadas. */
+  form > div {
+    width: 60%;
+  }
+}

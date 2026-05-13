@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="icon" type="image/png" href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/book_pile.png"
+    />
+
+    <title>Criar quiz</title>
+
+    <!-- Custom styles for this template -->
+    <link href="./css/toast.css" rel="stylesheet" />
+    <link href="./css/global.css" rel="stylesheet" />
+    <link href="./css/spinner.css" rel="stylesheet" />
+    <link href="./css/create_questions.css" rel="stylesheet" />
+  </head>
+
+  <body class="d-flex flex-column align-items-center">
+    <div id="msgOrSpinner" class="spinner"></div>
+    <div id="page-content" style="display: none" hidden>
+      <div id="menu-div" class="p-4">
+        <header>
+          <nav>
+            <a
+              id="returnToDashboardBtn"
+              class="nav-link active"
+              onclick="goToDashboard(event)"
+              >Voltar ao painel</a
+            >
+          </nav>
+        </header>
+      </div>
+
+      <main>
+        <form>
+          <div class="mb-5">
+            <h3 id="quizTitleDisplay">Título do Quiz</h3>
+            <h5 id="questionNumber">Questão 1</h5>
+          </div>
+          <div class="form-group">
+            <div id="difficultyLevel" class="d-flex justify-content-between">
+              <label
+                >Nível&nbsp;
+                <span class="text-warning">(opcional)</span>
+              </label>
+              <div id="difficultyOptionsDiv" class="d-flex">
+                <input
+                  class="difficultyLevelOption"
+                  type="radio"
+                  id="facil"
+                  name="difficulty"
+                  value="1"
+                  checked
+                />
+                <label for="facil">Fácil</label>
+                <input
+                  class="difficultyLevelOption"
+                  type="radio"
+                  id="medio"
+                  name="difficulty"
+                  value="2"
+                />
+                <label for="medio">Médio</label>
+                <input
+                  class="difficultyLevelOption"
+                  type="radio"
+                  id="dificil"
+                  name="difficulty"
+                  value="3"
+                />
+                <label for="dificil">Difícil</label>
+              </div>
+            </div>
+
+            <label for="quizEnunciado"
+              >Enunciado da questão&nbsp;*
+              <span class="text-warning">(Máx. 2000 caracteres)</span>
+            </label>
+            <textarea
+              class="form-control"
+              id="quizEnunciado"
+              rows="3"
+              placeholder="Escreva o enunciado da questão"
+              maxlength="2000"
+              required
+            ></textarea>
+          </div>
+
+          <div id="mediaContainer" class="form-group">
+            <div
+              class="w-100 d-flex justify-content-between align-items-center pb-2"
+            >
+              <label for="mediaURL" class="mr-2"
+                >Link de mídia de apoio
+                <span class="text-muted">(opcional)</span></label
+              >
+              <button
+                class="btn btn-sm btn-warning"
+                type="button"
+                onclick="clearMediaURL()"
+              >
+                Limpar
+              </button>
+            </div>
+            <div>
+              <input
+                type="url"
+                class="form-control mr-2"
+                id="mediaURL"
+                placeholder="Cole aqui o link de uma imagem ou vídeo da internet"
+              />
+              <button type="button" class="btn btn-info" id="previewMediaBtn">
+                🔍
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning ml-2"
+                id="helpMediaBtn"
+              >
+                ❓
+              </button>
+            </div>
+          </div>
+
+          <div id="optionsDiv" class="form-group">
+            <label
+              >Opções de resposta&nbsp;*&nbsp;<span class="text-warning"
+                >(máx. 5 opções)</span
+              ></label
+            >
+            <p class="text-warning">
+              Escolha a opção correta com o botão circular.
+            </p>
+            <div id="optionsContainer">
+              <!-- Opções de resposta serão adicionadas aqui -->
+            </div>
+            <div id="buttons-div">
+              <button
+                id="removeQuestionBtn"
+                class="mt-2 btn btn-danger"
+                type="button"
+                onclick="removeQuestion()"
+              >
+                Remover 🗑️
+              </button>
+              <button
+                id="addOptionBtn"
+                class="mt-2 btn btn-info"
+                type="button"
+                onclick="addOptionField()"
+              >
+                ➕ Opções
+              </button>
+              <button
+                id="reloadQuestionBtn"
+                class="mt-2 btn btn-info"
+                type="button"
+                onclick="reloadCurrentQuestion()"
+              >
+                Recarregar 🔄
+              </button>
+              <button
+                id="nextQuestionBtn"
+                class="mt-2 btn btn-success"
+                type="button"
+                onclick="salvarQuestaoNoFirestore()"
+              >
+                Próxima ➡️
+              </button>
+              <button
+                id="finishQuizBtn"
+                class="mt-2 btn btn-success"
+                type="button"
+                onclick="finalizarQuiz()"
+              >
+                Finalizar ✅
+              </button>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <!-- Modal de prévia da mídia -->
+    <div
+      class="modal fade"
+      id="mediaPreviewModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="mediaPreviewLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header">
+            <h5 class="modal-title" id="mediaPreviewLabel">Prévia da mídia</h5>
+            <button
+              type="button"
+              class="close text-light"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center" id="mediaPreviewContent">
+            <div id="msgOrSpinner" class="spinner"></div>
+            <!-- Conteúdo da mídia será inserido via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de ajuda para links de mídia -->
+    <div
+      class="modal fade"
+      id="helpMediaModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="helpMediaLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header">
+            <h5 class="modal-title" id="helpMediaLabel">
+              Como obter o link da mídia?
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>
+                O link pode ser de uma imagem (<b>.jpg</b>, <b>.png</b>,
+                <b>.gif</b>, etc), de um vídeo (<b>.mp4</b>, <b>.webm</b>, etc)
+                <b>ou de um vídeo do YouTube</b>.
+              </li>
+              <li>
+                Insira o endereço direto da imagem, não o endereço da página
+                onde ela aparece!
+              </li>
+              <li>
+                Vídeo do
+                <a href="https://www.youtube.com/" target="_blank">YouTube</a>:
+                Basta colar o link do vídeo.
+              </li>
+              <li>
+                <a href="https://images.google.com/" target="_blank"
+                  >Google Imagens</a
+                >
+                e <a href="https://imgur.com/" target="_blank">Imgur</a><br />
+                <ol>
+                  <li>Selecione a imagem.</li>
+                  <li>
+                    <b>💻</b> Clique com o botão direito sobre ela e escolha
+                    <b>"Copiar endereço da imagem"</b>.
+                  </li>
+                  <li>
+                    <b>📱</b> Toque e segure a imagem, clique em "Compartilhar"
+                    e, em seguida, copie o link.
+                  </li>
+                  <li>Cole o link no campo acima.</li>
+                </ol>
+              </li>
+              <li>
+                Você pode usar sites como
+                <a href="https://imgur.com/" target="_blank">Imgur</a> ou
+                <a href="https://postimages.org/" target="_blank">Postimages</a>
+                para hospedar imagens e obter links diretos.
+              </li>
+            </ul>
+            <p class="mt-2">
+              <b>Dica:</b> Teste o link clicando em 🔍 antes de salvar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- O container onde as notificações serão inseridas via JavaScript -->
+    <div id="toast-container"></div>
+  </body>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="./js/firebase/firebase-init.js"></script>
+  <script src="./js/firebase/auth-guard.js"></script>
+  <script src="./js/modules/global.js"></script>
+  <script src="./js/modules/toast.js"></script>
+
+  <script src="./js/modules/validade_media.js"></script>
+  <script src="./js/pages/createQuestions.js"></script>
+  <script src="./js/pages/editQuestions.js"></script>
+</html>

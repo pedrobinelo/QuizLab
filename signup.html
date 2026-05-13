@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/book_pile.png"
+    />
+
+    <link href="./css/global.css" rel="stylesheet" />
+    <link href="./css/animated-bg-waves.css" rel="stylesheet" />
+    <link href="./css/toast.css" rel="stylesheet" />
+    <link href="./css/signup.css" rel="stylesheet" />
+  </head>
+
+  <body class="d-flex align-items-center">
+    <div class="wave-container">
+      <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </div>
+    <div id="pageContainer" class="d-flex flex-column align-items-center">
+      <div id="signup-options" class="d-flex pt-4">
+        <div id="googleSignInDiv" class="text-center">
+          <a id="googleSignInBtn" class="btn btn-dark text-light"
+            ><i class="bi bi-house-door-fill"></i>
+            Entre com Google&nbsp;
+            <img
+              src="./assets/icons/google-g-logo.svg"
+              alt="Google Logo"
+              style="width: 20px"
+            />
+          </a>
+        </div>
+      </div>
+      <main>
+        <p class="m-0 signup-info">
+          <b>Ou cadastre-se preenchendo os dados</b>
+        </p>
+        <div id="mainDiv">
+          <form method="POST">
+            <div>
+              <label for="userName">Nome&nbsp;*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="userName"
+                name="name"
+                placeholder="Digite seu nome"
+                required
+                maxlength="150"
+                oninput="validateFields()"
+              />
+            </div>
+            <div>
+              <label for="email">E-mail&nbsp;*</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                name="email"
+                placeholder="nome@email.com"
+                maxlength="254"
+                required
+                oninput="validateFields()"
+              />
+            </div>
+
+            <div>
+              <label for="email_confirm">Confirme seu e-mail&nbsp;*</label>
+              <input
+                type="email"
+                id="email_confirm"
+                class="form-control"
+                name="email_confirm"
+                placeholder="nome@email.com"
+                maxlength="254"
+                required
+                oninput="validateFields()"
+              />
+            </div>
+
+            <div>
+              <label for="password"
+                >Senha&nbsp;*
+                <span id="passwordHelp" class="text-info"
+                  >(Mínimo de 8 caracteres)</span
+                ></label
+              >
+              <div class="input-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Digite sua senha"
+                  minlength="8"
+                  required
+                  oninput="validateFields()"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="confirm_password">Confirme sua senha&nbsp;*</label>
+              <div class="input-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirm_password"
+                  name="confirm_password"
+                  placeholder="Digite sua senha novamente"
+                  minlength="8"
+                  required
+                  oninput="validateFields()"
+                />
+              </div>
+            </div>
+          </form>
+          <div id="bottomDiv">
+            <div
+              id="help"
+              class="text-light d-flex justify-content-center align-items-center"
+            ></div>
+            <div id="signupHelp" class="text-info text-center p-1">
+              <p class="mb-0">
+                Insira todos os seus dados para habilitar o botão
+                <strong>Criar conta</strong>
+              </p>
+            </div>
+            <div id="criarContaBtnDiv">
+              <button
+                disabled="true"
+                type="submit"
+                id="registerButton"
+                class="btn btn-info main-btn"
+                onclick="register(event)"
+              >
+                Criar conta
+              </button>
+            </div>
+            <div id="jaTemUmaConta">
+              <p>Já tem uma conta?</p>
+              <a href="login.html" class="text-warning">Faça login</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- O container onde as notificações serão inseridas via JavaScript -->
+    <div id="toast-container"></div>
+
+    <div
+      class="modal fade"
+      id="signupSuccessModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="signupSuccessLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-success text-light">
+          <div class="modal-header">
+            <h5 class="modal-title flex-grow-1" id="signupSuccessLabel">
+              Sucesso no cadastro!
+            </h5>
+            <div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Fechar"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="modal-body d-flex flex-column">
+            <div class="d-flex flex-column" style="gap: 10px">
+              <p class="m-0">
+                Você receberá um link de verificação em sua caixa de entrada!
+              </p>
+              <p class="m-0"><b>OBS:</b>&nbsp;Verifique a caixa de spam 😉.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+  <script src="./js/firebase/firebase-init.js"></script>
+
+  <!-- Custom JS -->
+  <script src="./js/modules/global.js"></script>
+  <script src="./js/modules/toast.js"></script>
+  <script src="./js/pages/login_signup.js"></script>
+</html>

@@ -1,0 +1,52 @@
+/* Container onde as notificações "toast" irão aparecer */
+#toast-container {
+  position: fixed; 
+  top: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo base para cada notificação "toast" */
+.toast {
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0; 
+  transform: translateX(100%); 
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+  min-width: 250px;
+}
+
+/* Estilo para quando o toast está visível */
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Variações de cor para diferentes tipos de mensagem */
+.toast.success {
+  background-color: #28a745; /* Verde para sucesso */
+}
+
+.toast.error {
+  background-color: #dc3545; /* Vermelho para erro */
+}
+
+.toast.info {
+  background-color: #1790a5; /* Azul para informação */
+}
+
+.toast.warning {
+  background-color: #ffc107; /* Amarelo para aviso */
+  color: #212529; 
+}
+
+@media screen and (min-width: 1024px) {
+  #toast-container {
+    right: 20px;
+  }
+}

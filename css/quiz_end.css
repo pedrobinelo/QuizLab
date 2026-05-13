@@ -1,0 +1,95 @@
+#page-content,
+#quizCover,
+#end-quiz,
+.spinner,
+#msgOrSpinner {
+  display: flex;
+}
+
+#page-content,
+#quizCover,
+.spinner,
+#msgOrSpinner,
+#end-quiz {
+  justify-content: center;
+  align-items: center;
+}
+
+#page-content {
+  width: 100vw;
+  height: 100vh;
+}
+
+#quizCover,
+#end-quiz {
+  flex-direction: column;
+}
+
+#quizCover {
+  font-size: 2rem;
+  text-align: center;
+  width: 70%;
+}
+
+#end-quiz {
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#end-quiz > button {
+  width: 60%;
+}
+
+#background-blur {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+}
+
+.spinner,
+#msgOrSpinner {
+  height: 100%;
+}
+
+.spinner {
+  height: 120px;
+}
+
+#msgOrSpinner {
+  flex: 1;
+}
+
+.spinner::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #2e8a22;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* TABLETS */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  #end-quiz > button {
+    width: 40%;
+  }
+}
+
+/* DESKTOPS */
+@media screen and (min-width: 1024px) {
+  #end-quiz > button {
+    width: 30%;
+  }
+}

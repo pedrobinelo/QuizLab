@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/book_pile.png"
+    />
+
+    <link href="./css/global.css" rel="stylesheet" />
+    <link href="./css/animated-bg-waves.css" rel="stylesheet" />
+    <link href="./css/toast.css" rel="stylesheet" />
+    <link href="./css/login.css" rel="stylesheet"/>
+
+    <title>Login</title>
+  </head>
+
+  <body class="d-flex flex-column align-items-center">
+    <div class="wave-container">
+      <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </div>
+    <div id="backToHomeDiv">
+      <a href="index.html" class="btn-sm btn-info"
+        ><i class="bi bi-house-door-fill"></i> Início ⬅️</a
+      >
+    </div>
+    <div id="loginContainer">
+      <img
+        src="./assets/icons/book_pile.png"
+        style="width: 45px"
+        alt="Logo"
+      />
+      <h4 class="mt-2">Faça o seu login!</h4>
+    </div>
+    <div id="login-options">
+      <div id="googleSignInDiv" class="text-center">
+        <a id="googleSignInBtn" class="btn btn-dark text-light"
+          ><i class="bi bi-house-door-fill"></i>
+          Entre com Google&nbsp;
+          <img
+            src="./assets/icons/google-g-logo.svg"
+            alt="Google Logo"
+            style="width: 20px"
+          />
+        </a>
+      </div>
+    </div>
+    <main>
+      <p class="m-0 login-info">
+        <b>Ou preencha seus dados</b>
+      </p>
+      <form method="POST">
+        <div>
+          <label for="email">E-mail&nbsp;*</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            placeholder="nome@email.com"
+            required
+            oninput="validateFields()"
+          />
+        </div>
+
+        <div>
+          <label for="password">Senha&nbsp;*</label>
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              name="password"
+              placeholder="Digite sua senha"
+              required
+              oninput="validateFields()"
+            />
+          </div>
+        </div>
+
+        <div id="loginHelp" class="text-primary">
+          <p class="mb-0">
+            Insira seu e-mail e senha para habilitar o botão
+            <strong>Entrar</strong>
+          </p>
+        </div>
+
+        <div id="formButtons" class="mt-4">
+          <button
+            disabled="true"
+            type="submit"
+            class="btn btn-info mb-3 main-btn"
+            id="loginButton"
+            onclick="login(event)"
+          >
+            Entrar
+          </button>
+          <div id="formButtonsDiv" class="p-3 d-flex">
+            <a class="formButtonsDivLink" href="signup.html">Registrar-se</a>
+
+            <a
+              id="recoverPasswordLink"
+              class="formButtonsDivLink"
+              onclick="recoverPassword(document.getElementById('email').value)"
+              >Recuperar senha</a
+            >
+          </div>
+        </div>
+        <div id="mandatoryFields" class="text-warning">
+          <p class="p-0 m-0 text-center">* Campos obrigatórios</p>
+        </div>
+      </form>
+    </main>
+    <!-- O container onde as notificações serão inseridas via JavaScript -->
+    <div id="toast-container"></div>
+  </body>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+  <script src="./js/firebase/firebase-init.js"></script>
+
+  <!-- Custom JS -->
+  <script src="./js/modules/global.js"></script>
+  <script src="./js/modules/toast.js"></script>
+  <script src="./js/pages/login_signup.js"></script>
+</html>

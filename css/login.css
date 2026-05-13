@@ -1,0 +1,91 @@
+/* Mobile First */
+
+body {
+  color: #000000;
+  gap: 15px;
+}
+
+body, #loginContainer, #formButtons, main, form, #formButtonsDiv {
+  display: flex;
+}
+
+body, #formButtons, main, form {
+  flex-direction: column;
+}
+
+body, #loginContainer, #formButtons, main, #formButtonsDiv {
+  justify-content: center;
+  align-items: center;
+}
+
+#loginContainer {
+  gap: 20px;
+}
+
+/* Botões "Registrar-se" e "Recuperar senha" */
+  #formButtonsDiv {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .formButtonsDivLink {
+    color:#000000;
+    padding: 0.375rem 0.75rem;
+  }
+
+  #recoverPasswordLink:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  main {
+    width: 100%;
+  }
+/* FORM */
+form {
+  width: 80%;
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px){
+  /* Faça o seu login! */
+  h4 {
+    font-size: 1.75rem;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  form {
+    font-size: 1.5rem;
+    align-items: center;
+  }
+
+  /* Seleciona as divs que são filhas diretas de form */
+  form > div {
+    width: 60%;
+  }
+
+  .div-bottom {
+    font-size: 1.25rem;
+  }
+
+}
+
+/* Desktops */
+@media (min-width: 1024px) {
+  main {
+    width: 100%;
+  }
+
+  form {
+    align-items: center;
+    font-size: 1rem;
+  }
+  
+  /* Seleciona as divs que são filhas diretas de form */
+  form > div {
+    width: 50%;
+  }
+}

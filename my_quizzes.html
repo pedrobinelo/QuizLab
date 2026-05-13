@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meus Quizzes</title>
+
+    <link rel="icon" type="image/png" href="./assets/icons/book_pile.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/icons/book_pile.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/book_pile.png"
+    />
+
+    <!-- Custom styles -->
+    <link href="./css/toast.css" rel="stylesheet" />
+    <link href="./css/my_quizzes.css" rel="stylesheet" />
+    <link href="./css/spinner.css" rel="stylesheet" />
+  </head>
+
+  <body class="d-flex flex-column align-items-center">
+    <div id="msgOrSpinner" class="spinner"></div>
+    <!-- O container onde as notificações serão inseridas via JavaScript -->
+    <div id="toast-container"></div>
+    <div id="page-content" hidden>
+      <div id="menu-div" class="p-4">
+        <header>
+          <nav>
+            <a class="nav-link" href="dashboard.html">Início</a>
+            <a class="nav-link active" href="my_quizzes.html">Meus quizzes</a>
+            <a class="nav-link" href="my_account.html">Minha conta</a>
+          </nav>
+        </header>
+      </div>
+      <div id="searchQuizzes">
+        <div
+          id="searchContainer"
+          class="d-flex flex-column flex-md-row justify-content-md-center align-items-md-center"
+          style="gap: 0.5rem"
+        >
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Pesquisar quizzes..."
+          />
+          <div class="form-check form-check-inline mt-2 mt-md-0">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="searchType"
+              id="searchTitle"
+              value="title"
+              checked
+            />
+            <label class="form-check-label" for="searchTitle">Título</label>
+          </div>
+          <div class="form-check form-check-inline mt-2 mt-md-0">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="searchType"
+              id="searchDesc"
+              value="description"
+            />
+            <label class="form-check-label" for="searchDesc">Descrição</label>
+          </div>
+          <div id="filterBtnContainer" class="text-center">
+            <button
+              id="filterBtn"
+              class="btn btn-sm btn-primary"
+              onclick="searchQuizzes()"
+            >
+              Filtrar 🔍
+            </button>
+          </div>
+        </div>
+        <div id="btnsContainer" class="d-flex">
+          <button
+            id="reload"
+            class="btn btn-sm btn-secondary"
+            onclick="reloadQuizzes()"
+          >
+            Recarregar 🔄
+          </button>
+          <button
+            id="loadMoreBtn"
+            class="btn btn-sm btn-success"
+            onclick="renderQuizzes()"
+          >
+            Carregar ➕
+          </button>
+        </div>
+      </div>
+      <div
+        id="info"
+        class="text-center text-warning bg-dark p-2"
+        style="display: none"
+      >
+        <p id="limitMsg" class="m-2"></p>
+        <p class="m-2">
+          Copie o código único do seu quiz&nbsp;<span
+            class="btn btn-sm btn-info"
+            >🔗 Código</span
+          >
+        </p>
+        <p class="m-2">
+          Gere o link de acesso direto do seu quiz&nbsp;<span
+            class="btn btn-sm btn-info"
+            >🔗</span
+          >
+        </p>
+      </div>
+      <div id="msgOrSpinnerGrid" class="spinner" style="display: none"></div>
+      <div id="quizzesGrid" class="quizzes-grid"></div>
+    </div>
+
+    <!-- Modal para editar título e descrição do quiz -->
+    <div
+      class="modal fade"
+      id="editQuizInfoModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editQuizInfoLabel"
+      inert
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editQuizInfoLabel">
+              Editar informações do quiz
+            </h5>
+            <button
+              type="button"
+              class="close text-light"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center" id="editQuizInfoContent">
+            <form id="editQuizForm">
+              <div class="form-group text-left">
+                <div
+                  id="difficultyLevel"
+                  class="d-flex justify-content-between"
+                >
+                  <label
+                    >Nível&nbsp;
+                    <span class="text-warning">(opcional)</span>
+                  </label>
+                  <div id="difficultyOptionsDiv" class="d-flex">
+                    <input
+                      type="radio"
+                      id="facil"
+                      name="difficulty"
+                      value="1"
+                    />
+                    <label for="facil">Fácil</label>
+                    <input
+                      type="radio"
+                      id="medio"
+                      name="difficulty"
+                      value="2"
+                    />
+                    <label for="medio">Médio</label>
+                    <input
+                      type="radio"
+                      id="dificil"
+                      name="difficulty"
+                      value="3"
+                    />
+                    <label for="dificil">Difícil</label>
+                  </div>
+                </div>
+                <label for="quizTitleInput"
+                  >Título&nbsp;*
+                  <span class="text-warning">(Máx. 60 caracteres)</span>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="quizTitleInput"
+                  placeholder="Digite o novo título do quiz"
+                  maxlength="60"
+                  required
+                />
+              </div>
+
+              <div id="quizCoverDiv" class="form-group text-left">
+                <div
+                  class="w-100 d-flex justify-content-between align-items-center pb-2"
+                >
+                  <label for="mediaURL"
+                    >Imagem de capa
+                    <span class="text-warning">(opcional)</span>
+                  </label>
+                  <button
+                    class="btn btn-sm btn-warning"
+                    type="button"
+                    onclick="clearMediaURL()"
+                  >
+                    Limpar
+                  </button>
+                </div>
+                <div class="d-flex" style="gap: 5px">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="mediaURL"
+                    placeholder="Cole aqui a URL de uma imagem"
+                    oninput="validateMediaURL()"
+                  />
+                  <div class="d-flex align-items-center">
+                    <span id="mediaURLStatus" style="font-size: 1rem"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group text-left">
+                <label for="quizDescInput"
+                  >Descrição&nbsp;*
+                  <span class="text-warning">(Máx. 500 caracteres)</span>
+                </label>
+                <textarea
+                  class="form-control"
+                  id="quizDescInput"
+                  rows="3"
+                  placeholder="Digite a nova descrição do quiz"
+                  maxlength="500"
+                  required
+                  style="resize: none"
+                ></textarea>
+              </div>
+            </form>
+            <div>
+              <button
+                class="btn btn-sm btn-success button"
+                type="button"
+                onclick="verifyIfQuizInfoChanged()"
+              >
+                Salvar alterações
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+    <script src="./js/firebase/firebase-init.js"></script>
+    <script src="./js/firebase/auth-guard.js"></script>
+    <script src="./js/modules/global.js"></script>
+    <script src="./js/modules/toast.js"></script>
+    <script src="./js/pages/my_quizzes.js"></script>
+  </body>
+</html>
