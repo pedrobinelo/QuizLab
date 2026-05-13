@@ -2,6 +2,10 @@
 
 <hr>
 
+<p align="center">
+   <img src="http://img.shields.io/static/v1?label=STATUS&message=IN%20DEVELOPMENT&color=RED&style=for-the-badge"/>
+</p>
+
 ### Topics
 
 - [Project Description](#project-description)
