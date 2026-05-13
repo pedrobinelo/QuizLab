@@ -1,4 +1,4 @@
-![Logo da plataforma QuizLab](\assets\images\quizlab.png)
+![Logo da plataforma QuizLab](https://github.com/pedrobinelo/QuizLab/blob/main/assets/images/quizlab.png?raw=true)
 
 <hr>
 
@@ -41,7 +41,7 @@ aprendizagem através de metodologias ativas.
 
 <div align="center">
 
-![Plataforma em funcionamento](editar)
+![Plataforma em funcionamento](https://github.com/pedrobinelo/QuizLab/blob/main/assets/images/quizlab-gif.gif?raw=true)
 
   </div>
 
