@@ -1,4 +1,4 @@
-![QuizLab Platform Logo](\assets\images\quizlab.png)
+![QuizLab Platform Logo](https://github.com/pedrobinelo/QuizLab/blob/main/assets/images/quizlab.png?raw=true)
 
 <hr>
 
@@ -42,7 +42,7 @@
 
 <div align="center">
 
-![Platform in operation](edit)
+![Platform in operation](https://github.com/pedrobinelo/QuizLab/blob/main/assets/images/quizlab-gif.gif?raw=true)
 
   </div>
 
