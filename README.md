@@ -10,13 +10,9 @@
 
 - [Application](#application)
 
-- [Tools Used](#tools-used)
+- [Tools](#tools-used)
 
-- [Project Access](#project-access)
-
-- [Open and Run the Project](#open-and-run-the-project)
-
-- [Developers](#developers)
+- [Developer](#developers)
 
 ## Project Description
 
